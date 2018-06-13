@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Model\Like;
 use App\Model\Reply;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Response;
 
 class LikeController extends Controller
 {
@@ -17,7 +18,7 @@ class LikeController extends Controller
 	{
 		$this->middleware('JWT');
 	}
-
+	
 	public function likeIt(Reply $reply) {
 		$reply->like()->create([
 //			'user_id' => auth()->id();
