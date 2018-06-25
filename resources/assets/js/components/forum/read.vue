@@ -12,14 +12,18 @@
       :question=question      
     ></show-question> 
 
+    <replies></replies>
+
   </div>
 </template>
 
 <script>
   import EditQuestion from'./editQuestion'
   import showQuestion from './showQuestion'
+  import Replies from '../reply/replies'
+
   export default {
-    components:{showQuestion, EditQuestion},
+    components:{showQuestion, Replies, EditQuestion},
     data() {
       return {
         question:null,
