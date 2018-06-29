@@ -9,7 +9,7 @@
           <span class="grey--text">{{question.user}} said {{question.created_at}}</span>
         </div>
         <v-spacer></v-spacer>
-        <v-btn color="teal">{{question.reply_count}} replies</v-btn>
+        <v-btn color="teal">{{totalReplies}} replies</v-btn>
        </v-card-title>
       <v-card-text v-html="body"></v-card-text>
       <v-card-actions
@@ -31,16 +31,39 @@
 
 <script>
   export default {
-    props:['question'],
+    props:{
+      question: {
+        type: Object,
+        default () {
+          return {}
+        }
+      }
+      
+    },
     data() {
       return {
-        own: User.own(this.question.user_id)
+        own: User.own(this.question.user_id),
+        replyCount:this.question.reply_count
       }
     },
     computed:{ 
       body() {
         return md.parse(this.question.body)
-      }
+      },
+      totalReplies() {
+        return this.question.replies.length
+      }      
+    },
+    created() {
+      EventBus.$on('newReply', () => {
+       totalReplies
+      }),
+
+      EventBus.$on('deleteReply', () => {
+        totalReplies
+      })
+
+      
     },
     methods: {
       destroy() {

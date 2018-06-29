@@ -1,7 +1,10 @@
 <?php
+
 namespace App\Http\Controllers;
+
 use Illuminate\Http\Request;
 use App\Http\Resources\NotificationResource;
+
 class NotificationController extends Controller
 {
     /**
@@ -13,6 +16,7 @@ class NotificationController extends Controller
     {
         $this->middleware('JWT');
     }
+    
     public function index()
     {
         return [
